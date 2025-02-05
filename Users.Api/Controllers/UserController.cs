@@ -26,6 +26,8 @@ namespace Users.Api.Controllers
         /// </summary>
         /// <returns>A list of the users or error if the system fails.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserDto>))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<UserDto>>> Get()
         {
             try
