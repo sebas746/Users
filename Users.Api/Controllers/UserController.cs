@@ -21,7 +21,10 @@ namespace Users.Api.Controllers
             _logger = logger;
         }
 
-        // GET: api/<UsersController>
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns>A list of the users or error if the system fails.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> Get()
         {
@@ -37,8 +40,14 @@ namespace Users.Api.Controllers
             }
         }
 
-        // GET api/<UsersController>/5
+        /// <summary>
+        /// Get user by id
+        /// </summary>
+        /// <param name="id">User ID.</param>
+        /// <returns>One user of error if the system fails.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDto))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<UserDto>> Get(int id)
         {
             try
@@ -53,8 +62,15 @@ namespace Users.Api.Controllers
             }
         }
 
-        // POST api/<UsersController>
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>OK if the user was created or error if the system fails.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         [AgeValidationFilter(18)]
         public async Task<ActionResult> Post([FromBody] UserDto user)
         {
@@ -75,8 +91,15 @@ namespace Users.Api.Controllers
             }
         }
 
-        // PUT api/<UsersController>/5
+        /// <summary>
+        /// Updates a user
+        /// </summary>
+        /// <param name="id">User ID</param>
+        /// <param name="user">User updating information.</param>
+        /// <returns>OK if the user was updated or error if the system fails.</returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Put(int id, [FromBody] UserDto user)
         {
             try
@@ -91,8 +114,14 @@ namespace Users.Api.Controllers
             }
         }
 
-        // DELETE api/<UsersController>/8
+        /// <summary>
+        /// Deletes a user
+        /// </summary>
+        /// <param name="id">User ID</param>
+        /// <returns>OK if the user was deleted or an error if the system fails.</returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Delete(int id)
         {
             try
