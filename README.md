@@ -12,7 +12,7 @@ There are different layers in charge of the following
 - Api: Presentation layer.
 - Core: Contains contracts and classes that are used across the other layers.
 
-## Script to create the Database
+## Script to create the SQL Server Database
 
 ```sql
 SET QUOTED_IDENTIFIER ON
